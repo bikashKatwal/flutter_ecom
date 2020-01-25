@@ -5,7 +5,7 @@ import 'package:flutter_ecom/commons/images.dart';
 import 'package:flutter_ecom/widgets/category_widgets.dart';
 
 class HorizontalListViewWidgets extends StatelessWidget {
-  final categories = <Map>[
+  final _categories = <Map>[
     {"image": Images.accessories, "name": "Accessories"},
     {"image": Images.dress, "name": "Dress"},
     {"image": Images.formal, "name": "Formal"},
@@ -18,18 +18,19 @@ class HorizontalListViewWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
+        itemCount: _categories.length,
         itemBuilder: (BuildContext context, int index) {
-          Map category = categories[index];
+          Map category = _categories[index];
           return CategoryWidget(
             imageLocation: category["image"],
             imageCaption: CustomText(
               text: category["name"],
-              fontSize: 12.0,
-              color: kRed,
+              fontSize: 14.0,
+              color: kBlack,
+              fontWeight: FontWeight.bold,
             ),
           );
         },

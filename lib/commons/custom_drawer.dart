@@ -35,10 +35,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: CustomText(
-              text: 'Bikash',
+              text: 'John Doe',
             ),
             accountEmail: CustomText(
-              text: 'bikashkatwal9@gmail.com',
+              text: 'xyz@gmail.com',
             ),
             currentAccountPicture: GestureDetector(
               child: CircleAvatar(
