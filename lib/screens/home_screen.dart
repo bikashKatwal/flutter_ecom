@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
 
               //? Product listed
               Container(
-                height: 280,
+                height: 400,
                 child: ProductsWidget(),
               )
             ],
