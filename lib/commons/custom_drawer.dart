@@ -13,8 +13,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   List _drawerItems = [
     {"icon": Icons.home, "name": "Home"},
     {"icon": Icons.account_circle, "name": "My account"},
-    {"icon": Icons.shopping_basket, "name": "Shopping"},
-    {"icon": Icons.dashboard, "name": "My orders"},
+    {"icon": Icons.shopping_basket, "name": "My orders"},
+    {"icon": Icons.shopping_cart, "name": "Shopping cart"},
     {"icon": Icons.favorite, "name": "Favourites"},
     {"icon": Icons.settings, "name": "Settings"},
     {"icon": Icons.help, "name": "About"},
@@ -23,8 +23,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
   _iconColor(int i) {
     int _count = _drawerItems.length;
     if (_count - 1 == i) {
-      return kBlue;
+      return kGrey;
+    } else if (_count - 2 == i) {
+      return kGrey;
     }
+    return kRed;
   }
 
   @override

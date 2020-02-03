@@ -8,56 +8,63 @@ class SingleProductWidget extends StatelessWidget {
   final String prodPicture;
   final double prodOldPrice;
   final double prodPrice;
+  final bool isHeroTagRequired;
 
   const SingleProductWidget(
       {@required this.prodName,
       @required this.prodPicture,
       @required this.prodOldPrice,
-      @required this.prodPrice});
+      @required this.prodPrice,
+      @required this.isHeroTagRequired});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        child: Hero(
-          tag: prodName,
-          child: InkWell(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => ProductDetails(
-                  prodName: prodName,
-                  prodPrice: prodPrice,
-                  prodPicture: prodPicture,
-                  prodOldPrice: prodOldPrice,
-                ),
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ProductDetails(
+                prodName: prodName,
+                prodPrice: prodPrice,
+                prodPicture: prodPicture,
+                prodOldPrice: prodOldPrice,
               ),
             ),
-            child: GridTile(
-              footer: Container(
+          ),
+          child: GridTile(
+            footer: Container(
                 color: kWhite70,
-                child: ListTile(
-                  leading: CustomText(
-                    text: prodName,
-                    fontWeight: FontWeight.bold,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: CustomText(
+                        text: prodName,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    CustomText(
+                      text: '\$$prodPrice',
+                      color: kRed,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                )),
+            child: isHeroTagRequired
+                ? Hero(
+                    tag: prodName,
+                    child: Image.asset(
+                      prodPicture,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : Image.asset(
+                    prodPicture,
+                    fit: BoxFit.cover,
                   ),
-                  title: CustomText(
-                    text: "\$$prodPrice",
-                    color: kRed,
-                    fontWeight: FontWeight.w800,
-                  ),
-                  subtitle: CustomText(
-                    text: "\$$prodOldPrice",
-                    color: kBlack,
-                    textDecoration: TextDecoration.lineThrough,
-                  ),
-                ),
-              ),
-              child: Image.asset(
-                prodPicture,
-                fit: BoxFit.cover,
-              ),
-            ),
           ),
         ),
       ),

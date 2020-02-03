@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
       autoplay: false,
       animationCurve: Curves.fastOutSlowIn,
       animationDuration: Duration(milliseconds: 1000),
+      dotBgColor: Colors.transparent,
       dotSize: 4.0,
       indicatorBgPadding: 8.0,
     ),
@@ -78,7 +79,7 @@ class HomeScreen extends StatelessWidget {
 
               //? Recent products
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(10.0),
                 child: CustomText(
                   text: Strings.recent_product,
                   fontSize: 20,
@@ -88,7 +89,7 @@ class HomeScreen extends StatelessWidget {
 
               //? Product listed
               Container(
-                height: 320,
+                height: 280,
                 child: ProductsWidget(),
               )
             ],

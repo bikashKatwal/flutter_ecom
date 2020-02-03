@@ -4,6 +4,8 @@ import 'package:flutter_ecom/commons/custom_icon.dart';
 import 'package:flutter_ecom/commons/custom_icon_button.dart';
 import 'package:flutter_ecom/commons/custom_material_button.dart';
 import 'package:flutter_ecom/commons/custom_text.dart';
+import 'package:flutter_ecom/screens/home_screen.dart';
+import 'package:flutter_ecom/widgets/products_widget.dart';
 
 class ProductDetails extends StatefulWidget {
   final String prodName;
@@ -19,14 +21,46 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  _onDropDownPressed(String text) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: CustomText(
+            text: text,
+          ),
+          content: CustomText(
+            text: "Please add the quantity...",
+          ),
+          actions: <Widget>[
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pop(context);
+              },
+              child: CustomText(
+                text: "close",
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: kRed,
-        title: CustomText(
-          text: 'Fash App',
+        title: InkWell(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          },
+          child: CustomText(
+            text: 'Fash App',
+          ),
         ),
         actions: <Widget>[
           CustomIconButton(
@@ -99,7 +133,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: <Widget>[
               Expanded(
                 child: CustomMaterialButton(
-                  onPressed: () {},
+                  onPressed: () => _onDropDownPressed("Size"),
                   color: kWhite,
                   textColor: kGrey,
                   elevation: 0.2,
@@ -122,7 +156,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               Expanded(
                 child: CustomMaterialButton(
-                  onPressed: () {},
+                  onPressed: () => _onDropDownPressed("Color"),
                   color: kWhite,
                   textColor: kGrey,
                   elevation: 0.2,
@@ -145,7 +179,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               Expanded(
                 child: CustomMaterialButton(
-                  onPressed: () {},
+                  onPressed: () => _onDropDownPressed("Quantity"),
                   color: kWhite,
                   textColor: kGrey,
                   elevation: 0.2,
@@ -198,6 +232,95 @@ class _ProductDetailsState extends State<ProductDetails> {
                 onIconPressed: () {},
               ),
             ],
+          ),
+
+          Divider(),
+          ListTile(
+            title: CustomText(
+              text: "Product details",
+            ),
+            subtitle: CustomText(
+              text:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            ),
+          ),
+          Divider(),
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: CustomText(
+                  text: "Product name:",
+                  color: kGrey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: CustomText(
+                  text: widget.prodName,
+                  color: kGrey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: CustomText(
+                  text: "Product brand",
+                  color: kGrey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              //TODO NEED To UPDATE Brand Name and Condition
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: CustomText(
+                  text: "BRAND NAME",
+                  color: kGrey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: CustomText(
+                  text: "Product condition",
+                  color: kGrey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: CustomText(
+                  text: "CONDITION",
+                  color: kGrey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+
+          //Similar Products
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomText(
+              text: "Similar products",
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            height: 360,
+            child: ProductsWidget(),
           ),
         ],
       ),

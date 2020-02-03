@@ -3,6 +3,9 @@ import 'package:flutter_ecom/commons/images.dart';
 import 'package:flutter_ecom/widgets/single_product_widget.dart';
 
 class ProductsWidget extends StatefulWidget {
+  final bool isHeroTagRequired;
+
+  const ProductsWidget({this.isHeroTagRequired = false});
   @override
   _ProductsWidgetState createState() => _ProductsWidgetState();
 }
@@ -90,6 +93,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
           prodPicture: _product["picture"],
           prodOldPrice: _product["old_price"],
           prodPrice: _product["price"],
+          isHeroTagRequired: widget.isHeroTagRequired,
         );
       },
     );
